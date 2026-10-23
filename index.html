@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grocery deals</title>
+<style>
+:root { --bg: #fdfdfb; --fg: #1d1d1b; --muted: #6b6b66; --line: #e4e3dc; --head: #f3f2ec; --link: #0b5cad; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #171716; --fg: #e9e8e2; --muted: #9a9991; --line: #33332f; --head: #22221f; --link: #7fb4f0; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 16px; background: var(--bg); color: var(--fg);
+       font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header, main, footer { max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 1.4rem; margin: 0 0 4px; }
+h2 { font-size: 1.15rem; margin: 28px 0 8px; }
+h3 { font-size: 0.95rem; margin: 14px 0 6px; color: var(--muted); }
+a { color: var(--link); }
+.sources { margin: 0 0 16px; padding: 0; list-style: none; color: var(--muted); font-size: 0.85rem; overflow-wrap: anywhere; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--head); font-weight: 600; white-space: nowrap; }
+td { white-space: nowrap; font-variant-numeric: tabular-nums; }
+td.wrap, .overview td { white-space: normal; min-width: 10em; }
+.muted { color: var(--muted); }
+footer { margin-top: 32px; color: var(--muted); font-size: 0.85rem; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0 12px; }
+.controls input, .controls select { font: inherit; padding: 6px 8px; border: 1px solid var(--line);
+  border-radius: 6px; background: var(--bg); color: var(--fg); }
+.controls input { flex: 1 1 14em; }
+th { cursor: pointer; user-select: none; }
+th[data-dir="asc"]::after { content: " ▲"; }
+th[data-dir="desc"]::after { content: " ▼"; }
+@media (max-width: 600px) { #offers th:first-child, #offers td:first-child { display: none; } }
+</style>
+</head>
+<body>
+<header><h1>Grocery deals · 23. 10. 2026</h1>
+<p class="muted">This week's offers for my shopping list, from the stores' own leaflets and online shops.
+Prices as published; the store's price counts.</p></header>
+<main>
+<div class="controls">
+<input id="q" type="search" placeholder="Search, e.g. pišč" aria-label="Search">
+<select id="item" aria-label="Item"><option value="">All items</option><option value="Leča">Leča</option><option value="Suh fižol">Suh fižol</option><option value="Fižol v pločevinki">Fižol v pločevinki</option><option value="Čičerika (suha)">Čičerika (suha)</option><option value="Čičerika v pločevinki">Čičerika v pločevinki</option><option value="Pasiran paradižnik">Pasiran paradižnik</option><option value="Ovseni kosmiči">Ovseni kosmiči</option><option value="Oljčno olje">Oljčno olje</option><option value="Zamrznjena zelenjava">Zamrznjena zelenjava</option><option value="Piščančje in puranje prsi">Piščančje in puranje prsi</option><option value="Riba">Riba</option></select>
+<select id="store" aria-label="Store"><option value="">All stores</option><option value="hofer">Hofer</option><option value="lidl">Lidl</option></select>
+<select id="when" aria-label="When"><option value="">Now and coming up</option><option value="now">Now</option><option value="later">Coming up</option></select>
+<span id="count" class="muted">20 offers</span>
+</div>
+<div class="scroll"><table id="offers"><thead><tr><th data-type="text">Item</th><th data-type="num">Unit price</th><th data-type="text">Product</th><th data-type="text">Store</th><th data-type="num">Price</th><th data-type="num">Before</th><th data-type="text">Valid</th><th data-type="text">Notes</th><th data-type="text">Link</th></tr></thead>
+<tbody><tr data-item="Fižol v pločevinki" data-store="lidl" data-when="now" data-search="fizol v plocevinki el tequito crni fizol 425 ml lidl"><td>Fižol v pločevinki</td><td data-v="1.3900000000000001">1,39 €/l</td><td class="wrap">EL TEQUITO Črni fižol 425 ml</td><td>Lidl</td><td data-v="0.59">0,59 €</td><td data-v=""></td><td>19. 10.–24. 10.</td><td class="wrap"></td><td><a href="https://www.lidl.si/h/iz-shrambe/h10096095">lidl.si</a></td></tr><tr data-item="Pasiran paradižnik" data-store="lidl" data-when="now" data-search="pasiran paradiznik podravka pasiran paradiznik 500 g lidl"><td>Pasiran paradižnik</td><td data-v="1.38">1,38 €/kg</td><td class="wrap">PODRAVKA Pasiran paradižnik 500 g</td><td>Lidl</td><td data-v="0.69">0,69 €</td><td data-v="1.3900000000000001">1,39 €</td><td>22. 10.–28. 10.</td><td class="wrap">Lidl Plus</td><td><a href="https://imgproxy.leaflets.schwarz/vU-SvlQ4hT0DlPHhQu75roP5DRgp32NMF6_YGwLJkBg/rs:fit:2400:2400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDFhMTQ0Y2ItYjNmNS03YzQxLTkzMzQtOTNkN2RjNmU4ZDBhL3BhZ2UtMTdfMDA3ZWQ2MTBhYWZiZjYyZTczMDMxMDU4NjcxZDI4MDcucG5n.jpg">p. 17</a></td></tr><tr data-item="Ovseni kosmiči" data-store="hofer" data-when="now" data-search="ovseni kosmici bio ovseni kosmici brez glutena 500 g hofer"><td>Ovseni kosmiči</td><td data-v="4.18">4,18 €/kg</td><td class="wrap">BIO OVSENI KOSMIČI BREZ GLUTENA 500 g</td><td>Hofer</td><td data-v="2.09">2,09 €</td><td data-v="2.89">2,89 €</td><td>from 21. 10.</td><td class="wrap">regular price</td><td><a href="https://letaki.hofer.si/letak_kw44_2026_siroka_ponudba_izdelkov_za_prvi_november/page/7">p. 7</a></td></tr><tr data-item="Oljčno olje" data-store="lidl" data-when="now" data-search="oljcno olje primadonna bio ekstra devisko oljcno olje 0 75 l lidl"><td>Oljčno olje</td><td data-v="7.05">7,05 €/l</td><td class="wrap">PRIMADONNA Bio ekstra deviško oljčno olje 0,75 l</td><td>Lidl</td><td data-v="5.29">5,29 €</td><td data-v="7.49">7,49 €</td><td>23. 10.–24. 10.</td><td class="wrap">Lidl Plus</td><td><a href="https://imgproxy.leaflets.schwarz/Pl-_D3sHyVau1_dsXSaZEPTRFPRIFp1Re9XkOSBt5b4/rs:fit:2400:2400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDFhMTQ0Y2ItYjNmNS03YzQxLTkzMzQtOTNkN2RjNmU4ZDBhL3BhZ2UtMzlfMzdkN2VjMThhZGEyMmQ3YzYzZjBhNWE4ZWFhNTkzOTQucG5n.jpg">p. 39</a> · <a href="https://www.lidl.si/h/olja-kis-in-omake/h10096110">lidl.si</a></td></tr><tr data-item="Oljčno olje" data-store="lidl" data-when="later" data-search="oljcno olje eridanous ekstra devisko oljcno olje p d o 750 ml lidl"><td>Oljčno olje</td><td data-v="9.32">9,32 €/l</td><td class="wrap">ERIDANOUS Ekstra deviško oljčno olje P.D.O. 750 ml</td><td>Lidl</td><td data-v="6.99">6,99 €</td><td data-v=""></td><td>26. 10.–28. 10.</td><td class="wrap">coming up</td><td><a href="https://imgproxy.leaflets.schwarz/6fJ-3U0qoGwqqh9Bdmdd_0kGcLCEI7GJClnafti5wHw/rs:fit:2400:2400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDFhMTQ0Y2ItYjNmNS03YzQxLTkzMzQtOTNkN2RjNmU4ZDBhL3BhZ2UtNTZfYzUxMzYxNjkzNWJhOWRkMzBhNWJkMWE5ZGU1NWIyM2MucG5n.jpg">p. 56</a></td></tr><tr data-item="Oljčno olje" data-store="lidl" data-when="later" data-search="oljcno olje grsko oljcno olje p d o 750 ml lidl"><td>Oljčno olje</td><td data-v="9.32">9,32 €/l</td><td class="wrap">Grško oljčno olje P.D.O. 750 ml</td><td>Lidl</td><td data-v="6.99">6,99 €</td><td data-v=""></td><td>26. 10.–31. 10.</td><td class="wrap">coming up</td><td><a href="https://www.lidl.si/h/olja-kis-in-omake/h10096110">lidl.si</a></td></tr><tr data-item="Oljčno olje" data-store="lidl" data-when="later" data-search="oljcno olje deluxe ekstra devisko oljcno olje 500 ml lidl"><td>Oljčno olje</td><td data-v="11.18">11,18 €/l</td><td class="wrap">DELUXE Ekstra deviško oljčno olje 500 ml</td><td>Lidl</td><td data-v="5.59">5,59 €</td><td data-v="7.99">7,99 €</td><td>27. 11.–28. 11.</td><td class="wrap">coming up</td><td><a href="https://www.lidl.si/h/olja-kis-in-omake/h10096110">lidl.si</a></td></tr><tr data-item="Zamrznjena zelenjava" data-store="hofer" data-when="now" data-search="zamrznjena zelenjava all seasons zamrznjena zelenjava 750 g hofer"><td>Zamrznjena zelenjava</td><td data-v="2.2">2,20 €/kg</td><td class="wrap">ALL SEASONS ZAMRZNJENA ZELENJAVA 750 g</td><td>Hofer</td><td data-v="1.65">1,65 €</td><td data-v=""></td><td>from 21. 10.</td><td class="wrap">regular price</td><td><a href="https://letaki.hofer.si/letak_kw44_2026_siroka_ponudba_izdelkov_za_prvi_november/page/14">p. 14</a></td></tr><tr data-item="Piščančje in puranje prsi" data-store="lidl" data-when="now" data-search="piscancje in puranje prsi valipile svez piscancji prsni file pribl 1 kg lidl"><td>Piščančje in puranje prsi</td><td data-v="5.99">5,99 €/kg</td><td class="wrap">VALIPILE Svež piščančji prsni file pribl. 1 kg</td><td>Lidl</td><td data-v="5.99">5,99 €</td><td data-v=""></td><td>22. 10.–28. 10.</td><td class="wrap"></td><td><a href="https://imgproxy.leaflets.schwarz/swepoBOnCpqcKMmNiJ1IqI7aQtxem_VnPCdwDl9F6L8/rs:fit:2400:2400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDFhMTQ0Y2ItYjNmNS03YzQxLTkzMzQtOTNkN2RjNmU4ZDBhL3BhZ2UtMDJfN2NjODliZTE2NGI4M2ExMzkwMjA0NWY5OTYwOTIwYTgucG5n.jpg">p. 2</a> · <a href="https://www.lidl.si/h/meso-in-perutnina/h10095752">lidl.si</a></td></tr><tr data-item="Piščančje in puranje prsi" data-store="hofer" data-when="now" data-search="piscancje in puranje prsi piscancji mini file 500 g hofer"><td>Piščančje in puranje prsi</td><td data-v="8.58">8,58 €/kg</td><td class="wrap">PIŠČANČJI MINI FILE 500 g</td><td>Hofer</td><td data-v="4.29">4,29 €</td><td data-v=""></td><td>from 21. 10.</td><td class="wrap">regular price</td><td><a href="https://letaki.hofer.si/letak_kw44_2026_siroka_ponudba_izdelkov_za_prvi_november/page/2">p. 2</a></td></tr><tr data-item="Piščančje in puranje prsi" data-store="lidl" data-when="now" data-search="piscancje in puranje prsi dulano piscancje puranje prsi xxl 400 g lidl"><td>Piščančje in puranje prsi</td><td data-v="11.2">11,20 €/kg</td><td class="wrap">DULANO Piščančje/puranje prsi XXL 400 g</td><td>Lidl</td><td data-v="4.48">4,48 €</td><td data-v=""></td><td>22. 10.–28. 10.</td><td class="wrap"></td><td><a href="https://imgproxy.leaflets.schwarz/c5nZkRDFn9sqSleukjz_cHGW5nmxRNw-XGhtbe_cNv0/rs:fit:2400:2400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDFhMTQ0Y2ItYjNmNS03YzQxLTkzMzQtOTNkN2RjNmU4ZDBhL3BhZ2UtMTZfYTk3N2JiOWNhMTFjZGFmYjZmOTZhZTg4MmE3NDE4MjkucG5n.jpg">p. 16</a></td></tr><tr data-item="Piščančje in puranje prsi" data-store="lidl" data-when="later" data-search="piscancje in puranje prsi nase nam pase puranji prsni file lidl"><td>Piščančje in puranje prsi</td><td data-v="9.99">9,99 €/kg</td><td class="wrap">NAŠE NAM PAŠE Puranji prsni file</td><td>Lidl</td><td data-v="9.99">9,99 €</td><td data-v="12.99">12,99 €</td><td>28. 10.–4. 11.</td><td class="wrap">coming up</td><td><a href="https://www.lidl.si/h/ribe-in-morski-sadezi/h10071050">lidl.si</a></td></tr><tr data-item="Piščančje in puranje prsi" data-store="lidl" data-when="later" data-search="piscancje in puranje prsi nase nam pase piscancje prsi brez koze lidl"><td>Piščančje in puranje prsi</td><td data-v="4.99">4,99 €/kg</td><td class="wrap">NAŠE NAM PAŠE Piščančje prsi brez kože</td><td>Lidl</td><td data-v="4.99">4,99 €</td><td data-v="5.49">5,49 €</td><td>12. 11.–18. 11.</td><td class="wrap">coming up</td><td><a href="https://www.lidl.si/h/meso-in-perutnina/h10095752">lidl.si</a></td></tr><tr data-item="Riba" data-store="lidl" data-when="now" data-search="riba sol mar tuna v soncnicnem olju 750 g lidl"><td>Riba</td><td data-v="7.72">7,72 €/kg</td><td class="wrap">SOL&amp;MAR Tuna v sončničnem olju 750 g</td><td>Lidl</td><td data-v="5.79">5,79 €</td><td data-v=""></td><td>22. 10.–28. 10.</td><td class="wrap"></td><td><a href="https://imgproxy.leaflets.schwarz/vU-SvlQ4hT0DlPHhQu75roP5DRgp32NMF6_YGwLJkBg/rs:fit:2400:2400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDFhMTQ0Y2ItYjNmNS03YzQxLTkzMzQtOTNkN2RjNmU4ZDBhL3BhZ2UtMTdfMDA3ZWQ2MTBhYWZiZjYyZTczMDMxMDU4NjcxZDI4MDcucG5n.jpg">p. 17</a> · <a href="https://www.lidl.si/h/iz-shrambe/h10096095">lidl.si</a></td></tr><tr data-item="Riba" data-store="lidl" data-when="now" data-search="riba nasa ribarnica sveza sarenka 550 g lidl"><td>Riba</td><td data-v="8.53">8,53 €/kg</td><td class="wrap">NAŠA RIBARNICA Sveža šarenka 550 g</td><td>Lidl</td><td data-v="4.6899999999999995">4,69 €</td><td data-v="5.6899999999999995">5,69 €</td><td>22. 10.–24. 10.</td><td class="wrap"></td><td><a href="https://imgproxy.leaflets.schwarz/vA_AS10bWMVEOrqVOhCFLvEUHz43Uc-Tr-A3hvgZgwI/rs:fit:2400:2400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDFhMTQ0Y2ItYjNmNS03YzQxLTkzMzQtOTNkN2RjNmU4ZDBhL3BhZ2UtMDNfZTYzOWNmMTY0MTljMTBiZGIxZjNjZjVjN2U1OTY5NTYucG5n.jpg">p. 3</a> · <a href="https://www.lidl.si/h/ribe-in-morski-sadezi/h10071050">lidl.si</a></td></tr><tr data-item="Riba" data-store="lidl" data-when="now" data-search="riba grillmeister mariniran losos 250 g lidl"><td>Riba</td><td data-v="17.56">17,56 €/kg</td><td class="wrap">GRILLMEISTER Mariniran losos 250 g</td><td>Lidl</td><td data-v="4.39">4,39 €</td><td data-v="5.28">5,28 €</td><td>22. 10.–24. 10.</td><td class="wrap"></td><td><a href="https://imgproxy.leaflets.schwarz/vA_AS10bWMVEOrqVOhCFLvEUHz43Uc-Tr-A3hvgZgwI/rs:fit:2400:2400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDFhMTQ0Y2ItYjNmNS03YzQxLTkzMzQtOTNkN2RjNmU4ZDBhL3BhZ2UtMDNfZTYzOWNmMTY0MTljMTBiZGIxZjNjZjVjN2U1OTY5NTYucG5n.jpg">p. 3</a> · <a href="https://www.lidl.si/h/ribe-in-morski-sadezi/h10071050">lidl.si</a></td></tr><tr data-item="Riba" data-store="lidl" data-when="now" data-search="riba nautica dimljen losos 300 g lidl"><td>Riba</td><td data-v="17.63">17,63 €/kg</td><td class="wrap">NAUTICA Dimljen losos 300 g</td><td>Lidl</td><td data-v="5.29">5,29 €</td><td data-v=""></td><td>22. 10.–28. 10.</td><td class="wrap"></td><td><a href="https://imgproxy.leaflets.schwarz/c5nZkRDFn9sqSleukjz_cHGW5nmxRNw-XGhtbe_cNv0/rs:fit:2400:2400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDFhMTQ0Y2ItYjNmNS03YzQxLTkzMzQtOTNkN2RjNmU4ZDBhL3BhZ2UtMTZfYTk3N2JiOWNhMTFjZGFmYjZmOTZhZTg4MmE3NDE4MjkucG5n.jpg">p. 16</a> · <a href="https://www.lidl.si/h/ribe-in-morski-sadezi/h10071050">lidl.si</a></td></tr><tr data-item="Riba" data-store="hofer" data-when="now" data-search="riba gourmet finest cuisine file norveskega lososa 750 g hofer"><td>Riba</td><td data-v="21.72">21,72 €/kg</td><td class="wrap">GOURMET FINEST CUISINE FILE NORVEŠKEGA LOSOSA 750 g</td><td>Hofer</td><td data-v="16.29">16,29 €</td><td data-v=""></td><td>from 21. 10.</td><td class="wrap">regular price</td><td><a href="https://letaki.hofer.si/letak_kw44_2026_siroka_ponudba_izdelkov_za_prvi_november/page/2">p. 2</a></td></tr><tr data-item="Riba" data-store="lidl" data-when="now" data-search="riba fish cultura file tune 200 g lidl"><td>Riba</td><td data-v="21.95">21,95 €/kg</td><td class="wrap">FISH CULTURA File tune 200 g</td><td>Lidl</td><td data-v="4.39">4,39 €</td><td data-v="5.49">5,49 €</td><td>22. 10.–24. 10.</td><td class="wrap">Lidl Plus</td><td><a href="https://imgproxy.leaflets.schwarz/vA_AS10bWMVEOrqVOhCFLvEUHz43Uc-Tr-A3hvgZgwI/rs:fit:2400:2400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDFhMTQ0Y2ItYjNmNS03YzQxLTkzMzQtOTNkN2RjNmU4ZDBhL3BhZ2UtMDNfZTYzOWNmMTY0MTljMTBiZGIxZjNjZjVjN2U1OTY5NTYucG5n.jpg">p. 3</a> · <a href="https://www.lidl.si/h/ribe-in-morski-sadezi/h10071050">lidl.si</a></td></tr><tr data-item="Riba" data-store="lidl" data-when="later" data-search="riba eridanous dimljena tuna v kosu 160 g lidl"><td>Riba</td><td data-v="11.19">11,19 €/kg</td><td class="wrap">ERIDANOUS Dimljena tuna v kosu 160 g</td><td>Lidl</td><td data-v="1.79">1,79 €</td><td data-v=""></td><td>26. 10.–28. 10.</td><td class="wrap">coming up</td><td><a href="https://imgproxy.leaflets.schwarz/BXepEy1TarCNUTRjL4hFuqN8G0QuQon1K-llL6_1TqU/rs:fit:2400:2400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDFhMTQ0Y2ItYjNmNS03YzQxLTkzMzQtOTNkN2RjNmU4ZDBhL3BhZ2UtNDVfY2Q0ZjgwYTZhY2I0NTgxN2ZmMTdlOGJjZWJmNjNiY2UucG5n.jpg">p. 45</a></td></tr></tbody></table></div>
+<p class="muted">Nothing this week: Leča, Suh fižol, Čičerika (suha), Čičerika v pločevinki.</p>
+</main>
+<footer><p>Not affiliated with any store. Each row links to its source.</p></footer>
+<script>
+const fold = (s) => s.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+
+function visible(row, q, item, store, when) {
+  return fold(q).split(/\s+/).filter(Boolean).every((w) => row.search.includes(w))
+    && (!item || row.item === item) && (!store || row.store === store) && (!when || row.when === when);
+}
+
+function compare(a, b, type) {
+  if (type === "num") {
+    const x = a === "" ? Infinity : Number(a), y = b === "" ? Infinity : Number(b);
+    return x === y ? 0 : x < y ? -1 : 1;
+  }
+  return a.localeCompare(b, "sl");
+}
+
+if (typeof document !== "undefined") {
+  const body = document.querySelector("#offers tbody");
+  const rows = [...body.rows];
+  const controls = ["q", "item", "store", "when"].map((id) => document.getElementById(id));
+  const params = new URLSearchParams(location.search);
+  const update = () => {
+    const [q, item, store, when] = controls.map((c) => c.value);
+    let shown = 0;
+    for (const tr of rows) {
+      const ok = visible(tr.dataset, q, item, store, when);
+      tr.hidden = !ok;
+      shown += ok;
+    }
+    document.getElementById("count").textContent = `${shown} offers`;
+    const query = new URLSearchParams();
+    controls.forEach((c) => c.value && query.set(c.id, c.value));
+    try { history.replaceState(null, "", query.size ? `?${query}` : location.pathname); } catch (e) {}
+  };
+  controls.forEach((c) => {
+    if (params.has(c.id)) c.value = params.get(c.id);
+    c.addEventListener("input", update);
+  });
+  document.querySelectorAll("#offers th").forEach((th, i, all) => th.addEventListener("click", () => {
+    const dir = th.dataset.dir === "asc" ? -1 : 1;
+    all.forEach((h) => delete h.dataset.dir);
+    th.dataset.dir = dir === 1 ? "asc" : "desc";
+    const key = (tr) => tr.cells[i].dataset.v ?? tr.cells[i].textContent;
+    rows.sort((a, b) => dir * compare(key(a), key(b), th.dataset.type));
+    body.append(...rows);
+  }));
+  update();
+}
+</script>
+</body>
+</html>
